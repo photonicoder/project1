@@ -1,0 +1,24 @@
+_schema-version: "3.2"
+ID: project1
+version: 1.0.0
+description: "CAP sflight demo"
+
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        # set 'CDS_ENV=node' to pick the 'node' build profile settings, defined in package.json
+        - npm install
+
+modules:
+  # --------------------- SERVER MODULE ------------------------
+  - name: project1
+  # ------------------------------------------------------------
+    type: nodejs
+    path: ./
+    #build-parameters:
+      #builder: npm-ci
+      #ignore: ["node_modules/"]
